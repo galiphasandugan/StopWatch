@@ -11,6 +11,7 @@ let run = false;
 let timer;
 
 const watchTimer = ()=>{
+  audio.play();
   mSec++
 if (mSec == 100) {
   sec++;
@@ -40,18 +41,19 @@ play.addEventListener("click", () => {
    }
    else{
      clearInterval(timer);
-     audio.pause();
+     audio.play();
       play.innerHTML=`<i class="fa-solid fa-circle-play"></i>`;
    }  
   
 });
 
 reset.addEventListener('click',()=>{
+  audio.play();
    min=0;
    sec=0;
    mSec=0;
    clearInterval(timer);
-   audio.pause();
+   
    audio.currentTime=0;
    
   
