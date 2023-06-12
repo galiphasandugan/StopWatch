@@ -6,12 +6,13 @@ const audio = document.querySelector("audio");
 
 let min=0;
 let sec=0;
-let mSec =0;
+let mSec=0;
 let run = false;
 let timer;
+let result;
 
 const watchTimer = ()=>{
-  audio.play();
+  // audio.play();
   mSec++
 if (mSec == 100) {
   sec++;
@@ -26,35 +27,38 @@ if (sec == 60) {
    sec=String(sec).length < 2 ? '0' + sec : sec;
    mSec=String(mSec).length < 2 ? '0' + mSec : mSec;
    saat.innerHTML=`${min}:${sec}:${mSec}`;
-  
-   
-   }
+}
     
 
 play.addEventListener("click", () => {
- renk()
+
    run=!run;
    if(run){
+    result =true
+    renk()
       timer=setInterval(watchTimer,10);
       play.innerHTML=`<i class="fa-solid fa-circle-pause"></i>`
       audio.play();
+      
    }
    else{
-     clearInterval(timer);
-     audio.play();
+      clearInterval(timer);
+     audio.pause();
       play.innerHTML=`<i class="fa-solid fa-circle-play"></i>`;
+    
    }  
   
 });
 
 reset.addEventListener('click',()=>{
-  audio.play();
+ 
+  audio.pause();
    min=0;
    sec=0;
    mSec=0;
    clearInterval(timer);
    
-   audio.currentTime=0;
+   audio.pause()
    
   
    saat.innerHTML=`0${min}:0${sec}:0${mSec}`;
@@ -93,6 +97,7 @@ reset.onmouseout = function () {
 };
 
  const renk =()=>{
+  if(result){
     setTimeout(() => {
       document.querySelector(".container").style.backgroundColor = "darkorange";
       setTimeout(() => {
@@ -128,8 +133,11 @@ reset.onmouseout = function () {
                   }, 200);
               }, 200);
             }, 200);
-          }, 5000);
-        }, 5500);
-      }, 16000);
-    }, 6000);
+          }, 500);
+        }, 550);
+      }, 1600);
+    }, 600);
+
+  }
+
   }
